@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,12 +18,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-      {/* Using ClerkProvider to wrap everything in Clerk's auth system. */}
-        <ClerkProvider>
-          {children}
-        </ClerkProvider>
-      </body>
+      <ClerkProvider>
+        <body className={inter.className}> 
+          {/* Will be a Header component, not tag: */}
+          <header>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </header>      
+            {children}
+        </body>
+      </ClerkProvider>
     </html>
   );
 }
