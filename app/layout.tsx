@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang='en'>
       <ClerkProvider>
         <body className={inter.className}> 
-          {/* Will be a Header component, not tag: */}
+          {/* Will be a Header component, not tag */}
           <header>
               <SignedOut>
                 <SignInButton />
