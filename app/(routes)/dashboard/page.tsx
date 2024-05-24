@@ -11,6 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import PeriodsTable from '@/components/Periods';
+import Link from 'next/link'
 
 
 export default function Dashboard() {
@@ -26,8 +28,8 @@ export default function Dashboard() {
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(userId)
     e.preventDefault();
+    console.log(userId)
   
     // Prepare the data object to be sent in the request body
     const data = {
@@ -56,6 +58,7 @@ export default function Dashboard() {
     } catch (error: any) {
       console.error('Error creating period entry:', error?.message);
     }
+    window.location.href = userId ? `/dashboard?afhsfekhugda;ioh=${userId}` : '#';
   };
   
 
@@ -88,6 +91,10 @@ export default function Dashboard() {
           <Button type="submit">Submit</Button>
         </form>
       </div>
+      <PeriodsTable />
+      <Button asChild>
+        <Link href="/">Home</Link>
+      </Button>
     </main>
   );
 }
